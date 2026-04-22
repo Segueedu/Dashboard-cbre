@@ -16,20 +16,13 @@ const AdminLogin = () => {
     setLoading(true);
     setError(null);
     
-    // Simulação de login para demonstração se não houver Supabase configurado
-    if (email === 'eduardo.cbre@outlook.com' && password === 'admin') {
-      setTimeout(() => {
-        navigate('/admin');
-        setLoading(false);
-      }, 1500);
-      return;
-    }
-
     const { error } = await supabase.auth.signInWithPassword({ email, password });
+    
     if (error) {
-      setError('Credenciais inválidas ou erro na configuração do Supabase.');
+      setError('Credenciais inválidas. Verifique seu e-mail e senha no Supabase.');
       setLoading(false);
     } else {
+      localStorage.setItem('is_admin_logged', 'true');
       navigate('/admin');
     }
   };
