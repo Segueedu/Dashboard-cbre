@@ -28,8 +28,16 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-[80vh] animate-in fade-in slide-in-from-top-4 duration-700">
-      <div className="w-full max-w-md px-8 py-10 bg-card/40 backdrop-blur-2xl rounded-[2.5rem] border border-border shadow-2xl relative overflow-hidden group">
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Image with Overlay */}
+      <div 
+        className="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-1000 scale-105"
+        style={{ backgroundImage: "url('/login-bg.png')" }}
+      >
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
+      </div>
+
+      <div className="w-full max-w-md px-8 py-10 bg-card/30 backdrop-blur-3xl rounded-[2.5rem] border border-white/10 shadow-2xl relative z-10 overflow-hidden group">
         <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary via-secondary to-primary animate-gradient-x" />
         
         <div className="mb-10 text-center relative z-10">
