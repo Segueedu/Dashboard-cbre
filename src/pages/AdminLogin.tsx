@@ -97,7 +97,7 @@ const AdminLogin = () => {
         </form>
         
         <p className="mt-8 text-center text-xs text-muted-foreground/60">
-          Eduardo Segue — CBRE Dashboard v1.0
+          Dev Regis -CBRE Dashboard v1.0
         </p>
         
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
