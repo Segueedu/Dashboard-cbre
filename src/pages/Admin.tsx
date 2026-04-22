@@ -92,7 +92,6 @@ const Admin = () => {
   };
 
   // Colunas encontradas vs esperadas
-  const colunasDetectadasLower = colunasDetectadas.map(d => d.toLowerCase().replace(/[çã]/g, (m) => m === 'ç' ? 'c' : 'a'));
 
 
   return (

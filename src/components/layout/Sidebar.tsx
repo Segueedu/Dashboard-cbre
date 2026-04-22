@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ClipboardList, Upload, LogIn, LayoutDashboard, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ClipboardList, Upload, LogIn, ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useOSData } from '../../context/OSDataContext';
 
