@@ -37,7 +37,7 @@ const AdminLogin = () => {
         <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
       </div>
 
-      <div className="w-full max-w-md px-8 py-10 bg-card/30 backdrop-blur-3xl rounded-[2.5rem] border border-white/10 shadow-2xl relative z-10 overflow-hidden group">
+      <div className="w-full max-w-md px-8 py-10 bg-white/5 backdrop-blur-3xl rounded-[2.5rem] border border-white/10 shadow-2xl relative z-10 overflow-hidden group">
         <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary via-secondary to-primary animate-gradient-x" />
         
         <div className="mb-10 text-center relative z-10">
