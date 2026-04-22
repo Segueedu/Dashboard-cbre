@@ -14,6 +14,7 @@ import KpiCardsGrid from '../components/dashboard/KpiCards';
 import FilterBar from '../components/dashboard/FilterBar';
 import GaugeChart from '../components/dashboard/GaugeChart';
 import { SemClassificacaoTable, VencimentosTable } from '../components/dashboard/AlertTable';
+import CustomTooltip from '../components/dashboard/CustomTooltip';
 
 /* ────────── Paletas de Cores ────────── */
 const COLORS_PIE = ['#3b82f6', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981', '#06b6d4', '#f97316', '#6366f1'];
@@ -35,20 +36,6 @@ function parseData(val: string | Date | undefined | null): Date | null {
   return isNaN(d.getTime()) ? null : d;
 }
 
-/* ────────── Tooltip customizado ────────── */
-const CustomTooltip = ({ active, payload, label }: any) => {
-  if (!active || !payload?.length) return null;
-  return (
-    <div className="bg-[#111827] border border-[#374151] rounded-xl px-4 py-3 shadow-xl">
-      <p className="text-xs font-bold text-white mb-1">{label}</p>
-      {payload.map((entry: any, i: number) => (
-        <p key={i} className="text-xs font-medium" style={{ color: entry.color || '#f3f4f6' }}>
-          {entry.name || 'Valor'}: <span className="font-bold">{entry.value}</span>
-        </p>
-      ))}
-    </div>
-  );
-};
 
 /* ══════════════════════════════════════════
    COMPONENTE PRINCIPAL: DASHBOARD DE OS
@@ -366,7 +353,6 @@ const Home = () => {
               </span>
             )}
           </p>
-        </div>
         </div>
       </header>
 
