@@ -367,13 +367,7 @@ const Home = () => {
             )}
           </p>
         </div>
-        <Link
-          to="/admin"
-          className="bg-accent/50 hover:bg-accent border border-border px-4 py-2 rounded-xl font-bold text-sm flex items-center gap-2 transition-all active:scale-[0.98]"
-        >
-          <Upload className="w-4 h-4" />
-          Atualizar Dados
-        </Link>
+        </div>
       </header>
 
       {/* ─── Filtros ─── */}

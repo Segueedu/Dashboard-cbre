@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
 import {
   Upload, FileSpreadsheet, CheckCircle2, LayoutPanelTop,
-  Trash2, ArrowLeft, Database, ClipboardList, LogIn
+  Trash2, ArrowLeft, Database, ClipboardList, LogIn, Loader2
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
@@ -28,8 +28,35 @@ const Admin = () => {
   const [previewData, setPreviewData] = useState<any[]>([]);
   const [fileInfo, setFileInfo] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const [checkingSession, setCheckingSession] = useState(true);
   const [importSuccess, setImportSuccess] = useState(false);
   const [colunasDetectadas, setColunasDetectadas] = useState<string[]>([]);
+
+  // Validação de Sessão Real no Supabase (Segurança Reativa)
+  useEffect(() => {
+    const checkSession = async () => {
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session) {
+          localStorage.removeItem('is_admin_logged');
+          navigate('/login', { replace: true });
+        }
+      } finally {
+        setTimeout(() => setCheckingSession(false), 500); // Pequeno delay para suavizar a transição
+      }
+    };
+    
+    checkSession();
+  }, [navigate]);
+
+  if (checkingSession) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-4 animate-in fade-in duration-500">
+        <Loader2 className="w-10 h-10 animate-spin text-primary" />
+        <p className="text-muted-foreground animate-pulse font-medium">Validando acesso seguro...</p>
+      </div>
+    );
+  }
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

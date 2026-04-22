@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home.tsx';
 import AdminLogin from './pages/AdminLogin.tsx';
 import Admin from './pages/Admin.tsx';
@@ -6,6 +6,18 @@ import DetalhesOS from './pages/DetalhesOS.tsx';
 import Sidebar from './components/layout/Sidebar.tsx';
 import Navbar from './components/layout/Navbar.tsx';
 import { OSDataProvider } from './context/OSDataContext.tsx';
+import { ReactNode } from 'react';
+
+// Componente para proteger rotas administrativas
+const ProtectedRoute = ({ children }: { children: ReactNode }) => {
+  const isAdmin = localStorage.getItem('is_admin_logged') === 'true';
+  
+  if (!isAdmin) {
+    return <Navigate to="/login" replace />;
+  }
+  
+  return <>{children}</>;
+};
 
 function App() {
   return (
@@ -20,7 +32,14 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/detalhes-os" element={<DetalhesOS />} />
                 <Route path="/login" element={<AdminLogin />} />
-                <Route path="/admin" element={<Admin />} />
+                <Route 
+                  path="/admin" 
+                  element={
+                    <ProtectedRoute>
+                      <Admin />
+                    </ProtectedRoute>
+                  } 
+                />
               </Routes>
             </main>
           </div>
